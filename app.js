@@ -17,12 +17,15 @@ searchUser.addEventListener('keyup', e => {
     github.getUser(userText).then(data => {
       if (data.profile.message === 'Not Found') {
         // Show alert if user is not found (ui.js)
+        ui.showAlert('User not found', 'alert alert-danger');
       } else {
         // Show profile (ui.js)
         ui.showProfile(data.profile);
+        ui.showRepos(data.repos);
       }
     });
   } else {
-    // Clear profile form (ui.js)
+    // Clear profile if form is empty (ui.js)
+    ui.clearProfile();
   }
 });
